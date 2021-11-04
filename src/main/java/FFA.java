@@ -12,17 +12,26 @@ package main.java;
  * negative. (We use the term vertex in this exercise; it is sometimes also called a node.)
  */
 public class FFA {
-    private int[][] matrix;
+    private int[][] originalMatrix;
+    private int[][] updatedMatrix;
+    private boolean[][] seenMatrix;
+
     private int maxFlow;
     private int[] cut;
     private int steps;
 
     public FFA(int[][] matrix) {
-        this.matrix = matrix;
+        this.originalMatrix = matrix;
     }
 
     /**
-     * read matrix like:
+     *
+     * what do I need:
+     * take the edges step by step, as soon as we touch the end node, take these path first
+     * do a augmented path, find the bottleneck value
+     * start again, leave out the used nodes of course
+     *
+     * when all edges from source are having zero capacity, sum up all the flows, this will be the maximum flow
      *
      */
     public void calculate() {
@@ -56,7 +65,7 @@ public class FFA {
 
     public String printMatrix() {
         StringBuilder matrixPrint = new StringBuilder();
-        for (int[] row : matrix) {
+        for (int[] row : originalMatrix) {
             for (int digit : row) {
                 matrixPrint.append(digit + " ");
             }
