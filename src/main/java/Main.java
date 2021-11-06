@@ -1,9 +1,9 @@
 package main.java;
 
-        import java.io.File;
-        import java.io.FileNotFoundException;
-        import java.io.PrintWriter;
-        import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class Main {
 
@@ -21,15 +21,15 @@ public class Main {
 
         FFA ffa = new FFA(inputMatrix);
 
+        //here happens the magic
         ffa.calculate();
 
         StringBuilder output = new StringBuilder();
 
 
-
-        //weight and number of moves is same as any move has the cost of one
+        //get all information needed from ffa after the calculations is done
         int maxFlow = ffa.getMaxFlow();
-        int[] cut = ffa.getCut();
+        String cut = ffa.printCut();
         int steps = ffa.getSteps();
 
         output.append("Max Flow: ");
